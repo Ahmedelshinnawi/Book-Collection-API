@@ -8,7 +8,7 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-    res.status(200).json({
+    res.status(201).json({
         message: "Handling POST requests to /books"
     });
 });
@@ -40,6 +40,12 @@ router.patch("/:bookId", (req, res, next) => {
 router.delete("/:bookId", (req, res, next) => {
     res.status(200).json({
         message: "Deleted book!"
+    });
+});
+
+router.post("/:bookId", (req, res, next) => {
+    res.status(201).json({
+        message: "Added book!"
     });
 });
 
