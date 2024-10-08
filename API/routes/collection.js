@@ -9,8 +9,13 @@ router.get("/", (req, res, next) => {
 
 
 router.post("/", (req, res, next) => {
+    const collection = {
+        collectionId: req.body.collectionId,
+        description: req.body.description
+    }
     res.status(201).json({
-        message: "Collection was created"
+        message: "Collection was created",
+        collection: collection
     });
 });
 
