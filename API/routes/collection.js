@@ -3,9 +3,9 @@ const router = express.Router();
 const mongoose = require("mongoose");
 
 const Collection = require("../models/collection");
-const collection = require("../models/collection");
+const checkAuth = require("../middleware/check-auth");
 
-router.get("/", (req, res, next) => {
+router.get("/", checkAuth, (req, res, next) => {
     Collection.find()
     .select("collectionName collection _id collection")
     .exec()
@@ -33,7 +33,7 @@ router.get("/", (req, res, next) => {
 });
 
 
-router.post("/", (req, res, next) => {
+router.post("/", checkAuth, (req, res, next) => {
     const collection = new Collection({
         collection: req.body.collectionId,
         collectionName: req.body.collectionName,
@@ -65,7 +65,7 @@ router.post("/", (req, res, next) => {
 });
 
 
-router.get("/:collectionId", (req, res, next) => {
+router.get("/:collectionId", checkAuth, (req, res, next) => {
     const id = req.params.collectionId;
 
     Collection.findById(id)
@@ -98,7 +98,7 @@ router.get("/:collectionId", (req, res, next) => {
 });
 
 
-router.patch("/:collectionId", (req, res, next) => {
+router.patch("/:collectionId", checkAuth, (req, res, next) => {
     const id = req.params.collectionId;
     const updateOps = {};
     for(const ops of req.body){
@@ -125,7 +125,7 @@ router.patch("/:collectionId", (req, res, next) => {
  });
 
 
-router.delete("/:collectionId", (req, res, next) => {
+router.delete("/:collectionId", checkAuth, (req, res, next) => {
     const id = req.params.collectionId;
     Collection.deleteOne({ _id: id })
       .exec()
