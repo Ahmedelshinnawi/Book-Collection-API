@@ -8,6 +8,9 @@ const bookSchema = mongoose.Schema({
       },
       author: {
         type: String,
+      },
+      finished: {
+        type: String,
         required: true
       },
       createdAt: {
