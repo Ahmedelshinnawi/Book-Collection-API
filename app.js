@@ -1,10 +1,15 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const connectDB = require("./server/config/db");
+
 const bookRoutes = require("./API/routes/books");
 const collectionRoutes = require("./API/routes/collection");
 
+connectDB();
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({extended: false}));
