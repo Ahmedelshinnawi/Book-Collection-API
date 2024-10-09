@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const connectDB = require("./server/config/db");
 
-const bookRoutes = require("./API/routes/books");
+
 const collectionRoutes = require("./API/routes/collection");
 const userRoutes = require("./API/routes/user");
 
@@ -29,7 +29,7 @@ app.use((req, res, next) =>{
     next();
 });
 
-app.use('/books', bookRoutes);
+
 app.use('/collection', collectionRoutes);
 app.use('/user', userRoutes);
 
